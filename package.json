@@ -40,7 +40,9 @@
     "start": "react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,7 +61,9 @@
       "ie 11"
     ]
   },
+  "homepage": "http://Himanshu-ramani.github.io/shreeji-frontEnd",
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.29.0"
   }
