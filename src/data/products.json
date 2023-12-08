@@ -1,5 +1,65 @@
 [
   {
+    "id": "5",
+    "sku": "ABCD1234",
+    "name": "Elegant Diamond Necklace",
+    "price": 599.99,
+    "discount": 20,
+    "new": true,
+    "rating": 4.8,
+    "saleCount": 50,
+    "category": ["jewellery", "women"],
+    "tag": ["jewellery", "women", "necklace", "diamond"],
+    "variation": [
+      {
+        "material": "18K White Gold",
+        "image": "/assets/img/product/jewellery/necklace-diamond.jpg"
+      },
+      {
+        "material": "14K Rose Gold",
+        "image": "/assets/img/product/jewellery/necklace-rose.jpg"
+      }
+    ],
+    "image": [
+      "/assets/img/product/jewellery/necklace-diamond.jpg",
+      "/assets/img/product/jewellery/necklace-rose.jpg",
+      "/assets/img/product/jewellery/necklace-display.jpg",
+      "/assets/img/product/jewellery/necklace-box.jpg"
+    ],
+    "shortDescription": "Exquisite diamond necklace crafted in 18K white gold, perfect for special occasions.",
+    "fullDescription": "This stunning diamond necklace features a total of 1.5 carats of round brilliant diamonds set in 18K white gold. It's an elegant piece suitable for both formal events and everyday wear. Every diamond is carefully selected for brilliance and clarity to ensure exceptional quality."
+  },
+  {
+    "id": "6",
+    "sku": "EFGH5678",
+    "name": "Sapphire and Diamond Earrings",
+    "price": 399.5,
+    "discount": 15,
+    "new": false,
+    "rating": 4.5,
+    "saleCount": 30,
+    "category": ["jewellery", "women"],
+    "tag": ["jewellery", "women", "earrings", "sapphire", "diamond"],
+    "variation": [
+      {
+        "material": "14K Yellow Gold",
+        "image": "/assets/img/product/jewellery/earrings-sapphire.jpg"
+      },
+      {
+        "material": "Platinum",
+        "image": "/assets/img/product/jewellery/earrings-platinum.jpg"
+      }
+    ],
+    "image": [
+      "/assets/img/product/jewellery/earrings-sapphire.jpg",
+      "/assets/img/product/jewellery/earrings-platinum.jpg",
+      "/assets/img/product/jewellery/earrings-display.jpg",
+      "/assets/img/product/jewellery/earrings-box.jpg"
+    ],
+    "shortDescription": "Gorgeous earrings featuring sapphires and diamonds set in 14K yellow gold, perfect for elegant evenings.",
+    "fullDescription": "These stunning earrings showcase a vivid blue sapphire complemented by sparkling round diamonds. Crafted in 14K yellow gold, they offer a timeless look suitable for any occasion. The intricate design and exquisite craftsmanship make these earrings a standout addition to your jewelry collection."
+  },
+  {
     "id": "1",
     "sku": "asdf123",
     "name": "Lorem ipsum jacket",

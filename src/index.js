@@ -12,21 +12,35 @@ import products from "./data/products.json";
 import App from "./App";
 import "./assets/scss/style.scss";
 import * as serviceWorker from "./serviceWorker";
-
+import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
-
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore, persistReducer } from "redux-persist";
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["user"],
+};
+// const store = createStore(
+//   rootReducer,
+//   load(),
+//   composeWithDevTools(applyMiddleware(thunk, save()))
+// );
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   load(),
   composeWithDevTools(applyMiddleware(thunk, save()))
 );
-
+let persistor = persistStore(store);
 // fetch products from json file
 store.dispatch(fetchProducts(products));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

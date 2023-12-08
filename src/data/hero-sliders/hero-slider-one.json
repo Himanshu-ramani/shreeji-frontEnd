@@ -2,15 +2,15 @@
   {
     "id": 1,
     "title": "Smart Products",
-    "subtitle": "Winter Offer 2020 Collection",
-    "image": "/assets/img/slider/single-slide-hm1-2.png",
+    "subtitle": "Diwali Offer 2023 Collection",
+    "image": "https://storage.googleapis.com/shreeji-e4288.appspot.com/pexels-goran-vrakela-230290.jpg",
     "url": "/shop-grid-standard"
   },
   {
     "id": 2,
-    "title": "Smart Products",
-    "subtitle": "Summer Offer 2020 Collection",
-    "image": "/assets/img/slider/single-slide-1.png",
+    "title": "Wedding",
+    "subtitle": "Wedding Season Collection 2023",
+    "image": "https://storage.googleapis.com/shreeji-e4288.appspot.com/pexels-heiner-204993.jpg",
     "url": "/shop-grid-standard"
   }
 ]
