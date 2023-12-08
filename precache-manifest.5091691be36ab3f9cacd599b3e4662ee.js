@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8dec5332ce3eb1c35601dd3456f1906d",
+    "revision": "cc5e445e71be11709f515bedd1c0c294",
     "url": "/shreeji-frontEnd/index.html"
   },
   {
@@ -160,8 +160,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shreeji-frontEnd/static/js/41.b8c99fba.chunk.js"
   },
   {
-    "revision": "19e57805de431ac85019",
-    "url": "/shreeji-frontEnd/static/js/42.0778e318.chunk.js"
+    "revision": "9c5a28d0c216b4c98145",
+    "url": "/shreeji-frontEnd/static/js/42.8cd75636.chunk.js"
   },
   {
     "revision": "027ec4d7ab9d199abd78",
@@ -336,8 +336,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shreeji-frontEnd/static/js/main.8e2d8e4a.chunk.js"
   },
   {
-    "revision": "f1175af7560386bab487",
-    "url": "/shreeji-frontEnd/static/js/runtime-main.5a7e03ad.js"
+    "revision": "3a12ec75291f080fc1c5",
+    "url": "/shreeji-frontEnd/static/js/runtime-main.95156283.js"
   },
   {
     "revision": "01798bc13e33afc36a52f2826638d386",

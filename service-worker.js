@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/shreeji-frontEnd/precache-manifest.31a1bb361bdb21b8cb88cfd8bebc6795.js"
+  "/shreeji-frontEnd/precache-manifest.5091691be36ab3f9cacd599b3e4662ee.js"
 );
 
 self.addEventListener('message', (event) => {
