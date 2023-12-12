@@ -1,16 +1,56 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { apiCall } from "../../helper";
 
 const Checkout = ({ location, cartItems, currency }) => {
   const { pathname } = location;
+  const user = useSelector((state) => state?.user?.user);
+  console.log(user);
+  const [orderState, setOrderState] = useState({});
   let cartTotalPrice = 0;
+  const editForm = (payload) =>
+    setOrderState((pre) => ({ ...pre, ...payload }));
+  useEffect(() => {
+    let { firstName, lastName, email, phone } = user || {};
+    setOrderState((pre) => ({ ...pre, lastName, firstName, email, phone }));
+    return () => {};
+  }, [user]);
+  const createOrder = async () => {
+    const res = await apiCall({
+      endpoint: "api/orders",
+      method: "POST",
+      data: {
+        userId: user?._id,
+        address: orderState,
+        amount: cartTotalPrice.toFixed(2),
+        products: cartItems?.map((o) => {
+          const discountedPrice = getDiscountPrice(o?.price, o?.discount);
+          const finalProductPrice = (o?.price * currency.currencyRate).toFixed(
+            2
+          );
+          const finalDiscountedPrice = (
+            discountedPrice * currency.currencyRate
+          ).toFixed(2);
+
+          discountedPrice != null
+            ? (cartTotalPrice += finalDiscountedPrice * o?.quantity)
+            : (cartTotalPrice += finalProductPrice * o?.quantity);
+          return {
+            productId: o?.id,
+            productAmount: discountedPrice,
+            quantity: o?.quantity,
+          };
+        }),
+      },
+    });
+  };
 
   return (
     <Fragment>
@@ -39,26 +79,39 @@ const Checkout = ({ location, cartItems, currency }) => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>First Name</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.firstName || ""}
+                            onChange={(e) =>
+                              editForm({ firstName: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Last Name</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.lastName || ""}
+                            onChange={(e) =>
+                              editForm({ lastName: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
-                      <div className="col-lg-12">
+                      {/* <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Company Name</label>
                           <input type="text" />
                         </div>
-                      </div>
-                      <div className="col-lg-12">
+                      </div> */}
+                      {/* <div className="col-lg-12">
                         <div className="billing-select mb-20">
                           <label>Country</label>
                           <select>
                             <option>Select a country</option>
+                            <option>India</option>
                             <option>Azerbaijan</option>
                             <option>Bahamas</option>
                             <option>Bahrain</option>
@@ -66,7 +119,7 @@ const Checkout = ({ location, cartItems, currency }) => {
                             <option>Barbados</option>
                           </select>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Street Address</label>
@@ -74,41 +127,77 @@ const Checkout = ({ location, cartItems, currency }) => {
                             className="billing-address"
                             placeholder="House number and street name"
                             type="text"
+                            value={orderState?.address_line_1 || ""}
+                            onChange={(e) =>
+                              editForm({ address_line_1: e.target.value })
+                            }
                           />
                           <input
                             placeholder="Apartment, suite, unit etc."
                             type="text"
+                            value={orderState?.address_line_2 || ""}
+                            onChange={(e) =>
+                              editForm({ address_line_2: e.target.value })
+                            }
                           />
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Town / City</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.city || ""}
+                            onChange={(e) => editForm({ city: e.target.value })}
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>State / County</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.country || ""}
+                            onChange={(e) =>
+                              editForm({ country: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Postcode / ZIP</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.pinCode || ""}
+                            onChange={(e) =>
+                              editForm({ pinCode: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.phone || ""}
+                            onChange={(e) =>
+                              editForm({ phone: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Email Address</label>
-                          <input type="text" />
+                          <input
+                            type="text"
+                            value={orderState?.email || ""}
+                            onChange={(e) =>
+                              editForm({ email: e.target.value })
+                            }
+                          />
                         </div>
                       </div>
                     </div>
@@ -121,6 +210,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                           placeholder="Notes about your order, e.g. special notes for delivery. "
                           name="message"
                           defaultValue={""}
+                          value={orderState?.orderNote || ""}
+                          onChange={(e) =>
+                            editForm({ orderNote: e.target.value })
+                          }
                         />
                       </div>
                     </div>
@@ -198,7 +291,9 @@ const Checkout = ({ location, cartItems, currency }) => {
                       <div className="payment-method"></div>
                     </div>
                     <div className="place-order mt-25">
-                      <button className="btn-hover">Place Order</button>
+                      <button className="btn-hover" onClick={createOrder}>
+                        Place Order
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -230,13 +325,13 @@ const Checkout = ({ location, cartItems, currency }) => {
 Checkout.propTypes = {
   cartItems: PropTypes.array,
   currency: PropTypes.object,
-  location: PropTypes.object
+  location: PropTypes.object,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     cartItems: state.cartData,
-    currency: state.currencyData
+    currency: state.currencyData,
   };
 };
 

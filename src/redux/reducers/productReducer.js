@@ -1,14 +1,24 @@
-import { FETCH_PRODUCTS_SUCCESS } from "../actions/productActions";
+import {
+  FETCH_PRODUCTS_SUCCESS,
+  UPDATE_PRODUCTS,
+} from "../actions/productActions";
 
 const initState = {
-  products: []
+  products: [],
 };
 
 const productReducer = (state = initState, action) => {
   if (action.type === FETCH_PRODUCTS_SUCCESS) {
     return {
       ...state,
-      products: action.payload
+      products: action.payload,
+    };
+  }
+
+  if (action.type === UPDATE_PRODUCTS) {
+    return {
+      ...state,
+      ...action.payload,
     };
   }
 

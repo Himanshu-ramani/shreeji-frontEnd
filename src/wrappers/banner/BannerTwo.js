@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import bannerData from "../../data/banner/banner-two.json";
+// import bannerData from "../../data/banner/banner-two.json";
 import BannerTwoSingle from "../../components/banner/BannerTwoSingle.js";
+import { useSelector } from "react-redux";
 
 const BannerTwo = ({ spaceTopClass, spaceBottomClass }) => {
+  const bannerData = useSelector((state) => state?.productData?.banner_2) || [];
   return (
     <div
       className={`banner-area ${spaceTopClass ? spaceTopClass : ""} ${
@@ -24,7 +26,7 @@ const BannerTwo = ({ spaceTopClass, spaceBottomClass }) => {
 
 BannerTwo.propTypes = {
   spaceBottomClass: PropTypes.string,
-  spaceTopClass: PropTypes.string
+  spaceTopClass: PropTypes.string,
 };
 
 export default BannerTwo;

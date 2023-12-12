@@ -398,9 +398,36 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
           <li>
             <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
               {strings["collection"]}
+              {sidebarMenu ? (
+                <span>
+                  <i className="fa fa-angle-right"></i>
+                </span>
+              ) : (
+                <i className="fa fa-angle-down" />
+              )}
             </Link>
+            <ul className="submenu">
+              {[
+                "Gemstone Glow",
+                "Silver Shimmer",
+                "Golden Gleam",
+                "Crystal Clarity",
+                "Pearl Radiance",
+                "Chic Charms",
+                "Dainty Delights",
+                "Elegant Essentials",
+                "Minimalist Magic",
+                "Stylish Sparkle",
+              ]?.map((str) => {
+                return (
+                  <li>
+                    <Link to={process.env.PUBLIC_URL + "/cart"}>{str}</Link>
+                  </li>
+                );
+              })}
+            </ul>
           </li>
-          <li>
+          {/* <li>
             <Link to={process.env.PUBLIC_URL + "/"}>
               {strings["pages"]}
               {sidebarMenu ? (
@@ -458,7 +485,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 </Link>
               </li>
             </ul>
-          </li>
+          </li> */}
           <li>
             <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
               {strings["blog"]}
@@ -507,7 +534,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
 NavMenu.propTypes = {
   menuWhiteClass: PropTypes.string,
   sidebarMenu: PropTypes.bool,
-  strings: PropTypes.object
+  strings: PropTypes.object,
 };
 
 export default multilanguage(NavMenu);
